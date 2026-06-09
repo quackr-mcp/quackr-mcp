@@ -21,9 +21,9 @@ Official MCP server for [Quackr](https://quackr.io) — virtual phone numbers fo
 2. Open your profile page
 3. Copy the API key from the API section
 
-## Claude Desktop / Claude Code Setup
+## Claude Code Setup
 
-Add to your `~/.claude.json` (or Claude Desktop config):
+Add to your `~/.claude.json` (or a project `.mcp.json`):
 
 ```json
 {
@@ -38,6 +38,16 @@ Add to your `~/.claude.json` (or Claude Desktop config):
   }
 }
 ```
+
+Or via the CLI:
+
+```bash
+claude mcp add --transport http quackr https://mcp.quackr.io/ --header "x-api-key: YOUR_API_KEY_HERE"
+```
+
+## Claude Desktop Setup
+
+Claude Desktop's JSON config only supports local (stdio) servers, so add Quackr as a remote connector instead: **Settings → Connectors → Add custom connector**, enter `https://mcp.quackr.io/`, and add an `x-api-key` header with your API key.
 
 ## Other MCP Clients
 
