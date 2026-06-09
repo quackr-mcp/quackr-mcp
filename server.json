@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.quackr/quackr",
+  "title": "Quackr",
+  "description": "Virtual phone numbers for SMS verification, OTP receipt, and number management.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/quackr-mcp/quackr-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://quackr.io",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.quackr.io/",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "description": "Quackr API key from your profile page at quackr.io",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
