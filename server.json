@@ -15,8 +15,8 @@
       "url": "https://mcp.quackr.io/",
       "headers": [
         {
-          "name": "x-api-key",
-          "description": "Quackr API key from your profile page at quackr.io",
+          "name": "Authorization",
+          "description": "Bearer token in the form 'Bearer <your Quackr API key>', from your profile page at quackr.io",
           "isRequired": true,
           "isSecret": true
         }

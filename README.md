@@ -1,19 +1,21 @@
 # Quackr MCP Server
 
-Official MCP server for [Quackr](https://quackr.io) — virtual phone numbers for SMS verification, OTP receipt, and number management. Use Claude (or any MCP-compatible client) to provision numbers, receive SMS, and release numbers programmatically.
+Official MCP server for [Quackr](https://quackr.io) — virtual phone numbers for SMS verification and OTP receipt. Use Claude (or any MCP-compatible client) to check pricing and inventory, purchase temporary numbers, and read incoming SMS programmatically.
 
 **Hosted endpoint:** `https://mcp.quackr.io/`
 **Transport:** Streamable HTTP
-**Auth:** `x-api-key` header
+**Auth:** `Authorization: Bearer YOUR_API_KEY` header
 
 ## Tools
 
 | Tool | Description |
 |---|---|
-| `provision_number` | Reserve a new virtual number for a given service/country |
-| `receive_sms` | Poll for incoming SMS on a provisioned number |
-| `check_messages` | Retrieve message history for a number |
-| `release_number` | Return a number to the pool when finished |
+| `get-balance` | Get the current account balance in USD |
+| `get-pricing` | Get phone number rental pricing for a specific country |
+| `get-inventory` | Check available phone number inventory for a country |
+| `purchase-number` | Purchase a temporary number for receiving SMS (deducts from balance) |
+| `check-sms` | Check SMS messages received on a rented number |
+| `list-active-numbers` | List all currently active (rented) numbers on the account |
 
 ## Getting an API Key
 
@@ -32,7 +34,7 @@ Add to your `~/.claude.json` (or a project `.mcp.json`):
       "type": "http",
       "url": "https://mcp.quackr.io/",
       "headers": {
-        "x-api-key": "YOUR_API_KEY_HERE"
+        "Authorization": "Bearer YOUR_API_KEY_HERE"
       }
     }
   }
@@ -42,16 +44,16 @@ Add to your `~/.claude.json` (or a project `.mcp.json`):
 Or via the CLI:
 
 ```bash
-claude mcp add --transport http quackr https://mcp.quackr.io/ --header "x-api-key: YOUR_API_KEY_HERE"
+claude mcp add --transport http quackr https://mcp.quackr.io/ --header "Authorization: Bearer YOUR_API_KEY_HERE"
 ```
 
 ## Claude Desktop Setup
 
-Claude Desktop's JSON config only supports local (stdio) servers, so add Quackr as a remote connector instead: **Settings → Connectors → Add custom connector**, enter `https://mcp.quackr.io/`, and add an `x-api-key` header with your API key.
+Claude Desktop's JSON config only supports local (stdio) servers, so add Quackr as a remote connector instead: **Settings → Connectors → Add custom connector**, enter `https://mcp.quackr.io/`, and add an `Authorization` header with the value `Bearer YOUR_API_KEY`.
 
 ## Other MCP Clients
 
-Any client supporting remote Streamable HTTP MCP servers with custom headers works. Point it at `https://mcp.quackr.io/` and pass your key via the `x-api-key` header.
+Any client supporting remote Streamable HTTP MCP servers with custom headers works. Point it at `https://mcp.quackr.io/` and pass your key via the `Authorization: Bearer YOUR_API_KEY` header.
 
 ## REST API
 
