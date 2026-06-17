@@ -1,10 +1,15 @@
 # Quackr MCP Server
 
+[![npm version](https://img.shields.io/npm/v/quackr-mcp.svg)](https://www.npmjs.com/package/quackr-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/quackr-mcp.svg)](https://www.npmjs.com/package/quackr-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Official MCP server for [Quackr](https://quackr.io) — virtual phone numbers for SMS verification and OTP receipt. Use Claude (or any MCP-compatible client) to check pricing and inventory, purchase temporary numbers, and read incoming SMS programmatically.
 
-**Hosted endpoint:** `https://mcp.quackr.io/`
-**Transport:** Streamable HTTP
-**Auth:** `Authorization: Bearer YOUR_API_KEY` header
+- **npm:** [`quackr-mcp`](https://www.npmjs.com/package/quackr-mcp) — `npx -y quackr-mcp`
+- **Hosted endpoint:** `https://mcp.quackr.io/`
+- **Transport:** Streamable HTTP
+- **Auth:** `Authorization: Bearer YOUR_API_KEY` header
 
 ## Tools
 
@@ -23,9 +28,32 @@ Official MCP server for [Quackr](https://quackr.io) — virtual phone numbers fo
 2. Open your profile page
 3. Copy the API key from the API section
 
+## Install via npm
+
+The [`quackr-mcp`](https://www.npmjs.com/package/quackr-mcp) package is a thin stdio
+launcher that bridges any stdio MCP client to the hosted Quackr endpoint. It needs
+Node.js 18+ — no separate install required, `npx` fetches it on first run.
+
+```json
+{
+  "mcpServers": {
+    "quackr": {
+      "command": "npx",
+      "args": ["-y", "quackr-mcp"],
+      "env": {
+        "QUACKR_API_KEY": "YOUR_API_KEY_HERE"
+      }
+    }
+  }
+}
+```
+
+You can also pass the key as a flag instead of an env var: `npx -y quackr-mcp --api-key YOUR_API_KEY_HERE`.
+
 ## Claude Code Setup
 
-Add to your `~/.claude.json` (or a project `.mcp.json`):
+**Remote (recommended)** — connect directly to the hosted endpoint. Add to your
+`~/.claude.json` (or a project `.mcp.json`):
 
 ```json
 {
@@ -49,7 +77,13 @@ claude mcp add --transport http quackr https://mcp.quackr.io/ --header "Authoriz
 
 ## Claude Desktop Setup
 
-Claude Desktop's JSON config only supports local (stdio) servers, so add Quackr as a remote connector instead: **Settings → Connectors → Add custom connector**, enter `https://mcp.quackr.io/`, and add an `Authorization` header with the value `Bearer YOUR_API_KEY`.
+Claude Desktop's JSON config only supports local (stdio) servers. Use the npm
+launcher (see [Install via npm](#install-via-npm)) by adding the `npx quackr-mcp`
+config above to `claude_desktop_config.json`, then restart Claude Desktop.
+
+Alternatively, add Quackr as a remote connector: **Settings → Connectors → Add
+custom connector**, enter `https://mcp.quackr.io/`, and add an `Authorization`
+header with the value `Bearer YOUR_API_KEY`.
 
 ## Other MCP Clients
 
