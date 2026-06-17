@@ -3,7 +3,7 @@
   "name": "io.quackr/quackr",
   "title": "Quackr",
   "description": "Virtual phone numbers for SMS verification, OTP receipt, and number management.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "repository": {
     "url": "https://github.com/quackr-mcp/quackr-mcp",
     "source": "github"
@@ -17,6 +17,25 @@
         {
           "name": "Authorization",
           "description": "Bearer token in the form 'Bearer <your Quackr API key>', from your profile page at quackr.io",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "quackr-mcp",
+      "version": "1.0.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "QUACKR_API_KEY",
+          "description": "Your Quackr API key, from your profile page at quackr.io",
           "isRequired": true,
           "isSecret": true
         }
