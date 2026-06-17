@@ -1,6 +1,7 @@
 {
   "name": "quackr-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "mcpName": "io.quackr/quackr",
   "description": "MCP launcher for Quackr — virtual phone numbers for SMS verification and OTP receipt. Bridges stdio MCP clients to the hosted Quackr server at https://mcp.quackr.io/.",
   "type": "module",
   "bin": {
